@@ -57,3 +57,19 @@ func TestSpread(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkRegular(b *testing.B) {
+	r := goxoshiro256starstar.New(987654321)
+
+	for i := 0; i < b.N; i++ {
+		r.Next()
+	}
+}
+
+func BenchmarkLocked(b *testing.B) {
+	r := goxoshiro256starstar.NewLocked(987654321)
+
+	for i := 0; i < b.N; i++ {
+		r.Next()
+	}
+}
